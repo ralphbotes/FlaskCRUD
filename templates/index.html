@@ -1,0 +1,32 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="../src/normalize.css">
+        <link rel="stylesheet" href="../src/skeleton.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row" style="background: rgb(184, 184, 184)">
+                <div class="four columns">
+                    <h5>DB DETAILS:</h5>
+                </div>
+                <div class="eight columns">
+                    {% for m in msg %}
+                    {% print(m) %}<br>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="four columns">
+                    <a class="button button-primary" href="{{ 'new_driver' }}">New Driver</a>
+                </div>
+                <div class="four columns">
+                    <a class="button button-primary" href="{{ 'list' }}">View Drivers</a>
+                </div>
+            </div>
+         </div>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Delete</title>
+    <link rel="stylesheet" href="../src/normalize.css">
+    <link rel="stylesheet" href="../src/skeleton.css">
+    <style>
+        body {
+            margin-top: 40px;
+        }
+
+        .button.button-delete,
+        button.button-delete,
+        input[type="submit"].button-delete,
+        input[type="reset"].button-delete,
+        input[type="button"].button-delete {
+            color: #FFF;
+            background-color: #ff3a1c;
+            border-color: #ff3a1c;
+        }
+
+            .button.button-delete:hover,
+            button.button-delete:hover,
+            input[type="submit"].button-delete:hover,
+            input[type="reset"].button-delete:hover,
+            input[type="button"].button-delete:hover,
+            .button.button-delete:focus,
+            button.button-delete:focus,
+            input[type="submit"].button-delete:focus,
+            input[type="reset"].button-delete:focus,
+            input[type="button"].button-delete:focus {
+                color: #FFF;
+                background-color: #e31e00;
+                border-color: #e31e00;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <h3>Delete from Database</h3>
+                <table class="u-full-width odd-background-color">
+                    <tbody>
+                        {% for i in user %}
+                        <tr>
+                            <td>{{i["id"]}}</td>
+                            <td>{{i["name"]}}</td>
+                            <td>{{i["surname"]}}</td>
+                            <td>{{i["email"]}}</td>
+                            <td>{{i["ethnicity"]}}</td>
+                            <td>{{i["gender"]}}</td>
+                            <td>{{(i["addate"])[:10]}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                {% for i in user %}
+                <a class="button button-delete" href="{{ url_for('remove_selected', id=i["id"]) }}">Yes</a>
+                {% endfor %}
+            </div>
+            <div class="three columns">
+                <a class="button button" href="{{ url_for('list') }}">No</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

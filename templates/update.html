@@ -1,0 +1,137 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Delete</title>
+    <link rel="stylesheet" href="../src/normalize.css">
+    <link rel="stylesheet" href="../src/skeleton.css">
+    <style>
+        body {
+            margin-top: 40px;
+        }
+
+        .button.button-delete,
+        button.button-delete,
+        input[type="submit"].button-delete,
+        input[type="reset"].button-delete,
+        input[type="button"].button-delete {
+            color: #FFF;
+            background-color: #ff3a1c;
+            border-color: #ff3a1c;
+        }
+
+            .button.button-delete:hover,
+            button.button-delete:hover,
+            input[type="submit"].button-delete:hover,
+            input[type="reset"].button-delete:hover,
+            input[type="button"].button-delete:hover,
+            .button.button-delete:focus,
+            button.button-delete:focus,
+            input[type="submit"].button-delete:focus,
+            input[type="reset"].button-delete:focus,
+            input[type="button"].button-delete:focus {
+                color: #FFF;
+                background-color: #e31e00;
+                border-color: #e31e00;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <h3>Update Driver Details</h3>
+                
+                {% for i in user %}
+                <form action="{{ url_for('update_selected') }}" method="POST">
+                    <div class="row">
+                        <div class="eleven columns">
+                            <p>Re-enter incorrect information:</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="six columns">
+                            <label for="id">ID</label>
+                            <input type="number" value="{{ i["id"] }}" name="id" id="id" class="u-full-width" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="five columns">
+                            <label for="name">Name</label>
+                            <input type="text" value="{{ i["name"] }}" name="name" id="name" class="u-full-width" required />
+                        </div>
+                        <div class="five columns">
+                            <label for="surname">Surname</label>
+                            <input type="text" value="{{ i["surname"] }}" name="surname" id="surname" class="u-full-width" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="six columns">
+                            <label for="email">Email</label>
+                            <input type="email" value="{{ i["email"] }}" name="email" id="email" class="u-full-width" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="four columns">
+                            <label for="ethnicity">Ethnicity</label>
+                            <p>Previous selected Ethnicity: <strong>{{ i["ethnicity"] }}</strong></p>
+                            <select name="ethnicity" id="ethnicity" class="u-full-width">
+                                <option value="Asian">Asian</option>
+                                <option value="Black">Black or African American</option>
+                                <option value="Hispanic or Latino">Hispanic or Latino</option>
+                                <option value="White">White</option>
+                                <option value="Other">Other</option>
+                                <option value="None" selected>None</option>
+                            </select>
+                        </div>
+                        <div class="two columns"><p /></div>
+                        <div class="four columns">
+                            <label>Gender</label>
+                            {% block content %}
+                                {% for i in user %}
+                                {% if 'Male' in i["gender"] %}
+                                    <input type="radio" name="gender" id="gender_male" value="Male" checked>Male<br>
+                                    <input type="radio" name="gender" id="gender_female" value="Female">Female<br>
+                                    <input type="radio" name="gender" id="gender_other" value="Other">Other<br>
+                                {% elif 'Female' in i["gender"] %}
+                                    <input type="radio" name="gender" id="gender_male" value="Male">Male<br>
+                                    <input type="radio" name="gender" id="gender_female" value="Female" checked>Female<br>
+                                    <input type="radio" name="gender" id="gender_other" value="Other">Other<br>
+                                {% else %}
+                                    <input type="radio" name="gender" id="gender_male" value="Male">Male<br>
+                                    <input type="radio" name="gender" id="gender_female" value="Female">Female<br>
+                                    <input type="radio" name="gender" id="gender_other" value="Other" checked>Other<br>
+                                {% endif %}
+                                {% endfor %}
+                            {% endblock content %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="three columns">
+                            <label for="date_added">Date Added</label>
+                            {{ (i["addate"])[:10] }}<br><br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="three columns">
+                            <input type="submit" value="Submit" class="button-primary">
+                        </div>
+                        <div class="three columns">
+                            <a href="{{ url_for('list') }}" class="button">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+                {% endfor %}
+             
+            </div>
+        </div>
+    </div>
+</body>
+</html>

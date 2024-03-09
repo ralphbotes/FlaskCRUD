@@ -1,0 +1,140 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>List Drivers</title>
+    <link rel="stylesheet" href="../src/normalize.css">
+    <link rel="stylesheet" href="../src/skeleton.css">
+    <style>
+        body {
+            margin-top: 40px;
+        }
+
+        .odd-background-color tbody > tr:nth-of-type(even) {
+            background-color: lavender;
+        }
+
+        .odd-background-color th:first-child,
+        .odd-background-color td:first-child {
+            padding-left: 15px;
+        }
+
+        .odd-background-color th:last-child,
+        .odd-background-color td:last-child {
+            padding-right: 15px;
+        }
+
+        .thead-background-color {
+            background-color: aqua;
+        }
+
+        .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        .button.button-update,
+        button.button-update,
+        input[type="submit"].button-update,
+        input[type="reset"].button-update,
+        input[type="button"].button-update {
+            color: #FFF;
+            background-color: #47ff51;
+            border-color: #47ff51;
+        }
+
+            .button.button-update:hover,
+            button.button-update:hover,
+            input[type="submit"].button-update:hover,
+            input[type="reset"].button-update:hover,
+            input[type="button"].button-update:hover,
+            .button.button-update:focus,
+            button.button-update:focus,
+            input[type="submit"].button-update:focus,
+            input[type="reset"].button-update:focus,
+            input[type="button"].button-update:focus {
+                color: #FFF;
+                background-color: #1cff28;
+                border-color: #1cff28;
+            }
+
+        .button.button-delete,
+        button.button-delete,
+        input[type="submit"].button-delete,
+        input[type="reset"].button-delete,
+        input[type="button"].button-delete {
+            color: #FFF;
+            background-color: #ff3a1c;
+            border-color: #ff3a1c;
+        }
+
+        .button.button-delete:hover,
+        button.button-delete:hover,
+        input[type="submit"].button-delete:hover,
+        input[type="reset"].button-delete:hover,
+        input[type="button"].button-delete:hover,
+        .button.button-delete:focus,
+        button.button-delete:focus,
+        input[type="submit"].button-delete:focus,
+        input[type="reset"].button-delete:focus,
+        input[type="button"].button-delete:focus {
+            color: #FFF;
+            background-color: #e31e00;
+            border-color: #e31e00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <h3>Drivers Database</h3>
+                <table class="u-full-width odd-background-color">
+                    <thead class="thead-background-color">
+                        <tr>
+                            <th>Action</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+                            <th>Ethnicity</th>
+                            <th>Gender</th>
+                            <th>Date Added</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for row in rows %}
+                        <tr>
+                            <td>
+                                <a class="button button-delete" href="{{ url_for('remove', id=row["id"]) }}">Delete</a>
+                                <a class="button button-update" href="{{ url_for('update', id=row["id"]) }}">Update</a>
+                            </td>
+                            <td>{{row["id"]}}</td>
+                            <td>{{row["name"]}}</td>
+                            <td>{{row["surname"]}}</td>
+                            <td>{{row["email"]}}</td>
+                            <td>{{row["ethnicity"]}}</td>
+                            <td>{{row["gender"]}}</td>
+                            <td>{{(row["addate"])[:10]}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="two columns">
+                    <a class="button button-primary" href="{{ url_for('home') }}">Home</a>
+                </div>
+                <div class="two columns">
+                    <a class="button button" href="{{ url_for('new_driver') }}">New Driver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

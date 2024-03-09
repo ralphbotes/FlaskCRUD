@@ -1,0 +1,125 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Add New Driver</title>
+    <link rel="stylesheet" href="../src/normalize.css">
+    <link rel="stylesheet" href="../src/skeleton.css">
+    <style>
+        .button.button-update,
+        button.button-update,
+        input[type="submit"].button-update,
+        input[type="reset"].button-update,
+        input[type="button"].button-update {
+            color: #FFF;
+            background-color: #47ff51;
+            border-color: #47ff51;
+        }
+
+        .button.button-update:hover,
+        button.button-update:hover,
+        input[type="submit"].button-update:hover,
+        input[type="reset"].button-update:hover,
+        input[type="button"].button-update:hover,
+        .button.button-update:focus,
+        button.button-update:focus,
+        input[type="submit"].button-update:focus,
+        input[type="reset"].button-update:focus,
+        input[type="button"].button-update:focus {
+            color: #FFF;
+            background-color: #1cff28;
+            border-color: #1cff28;
+        }
+
+        /* Remove arrows from integer block Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Remove arrows from integer block Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="{{ url_for('add_to_db') }}" method="POST">
+            <div class="row">
+                <div class="eleven columns">
+                    <h3>Driver Information</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="six columns">
+                    <label for="id">ID</label>
+                    <input type="number" name="id" id="id" class="u-full-width" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="five columns">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="u-full-width" placeholder="John" required />
+                </div>
+                <div class="five columns">
+                    <label for="surname">Surname</label>
+                    <input type="text" name="surname" id="surname" class="u-full-width" placeholder="Doe" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="six columns">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="u-full-width" placeholder="example@email.com" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="four columns">
+                    <label for="ethnicity">Ethnicity</label>
+                    <select name="ethnicity" id="ethnicity" class="u-full-width">
+                        <option value="Asian">Asian</option>
+                        <option value="Black">Black or African American</option>
+                        <option value="Hispanic or Latino">Hispanic or Latino</option>
+                        <option value="White">White</option>
+                        <option value="Other">Other</option>
+                        <option value="None" selected>None</option>
+                    </select>
+                </div>
+                <div class="two columns"><p /></div>
+                <div class="four columns">
+                    <label>Gender</label>
+                    <input type="radio" name="gender" id="gender_male" value="Male">Male<br>
+                    <input type="radio" name="gender" id="gender_female" value="Female">Female<br>
+                    <input type="radio" name="gender" id="gender_other" value="Other" checked>Other<br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="three columns">
+                    <label for="date_added">Date Added</label> 
+                    <input type="date" name="date_added" id="date_added" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="three columns">
+                    <input type="submit" value="Submit" class="button-primary">
+                </div>
+                <div class="three columns">
+                    <input type="reset" value="Clear" class="button-update">
+                </div>
+                <div class="three columns">
+                    <a href="{{ url_for('home') }}" class="button">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
